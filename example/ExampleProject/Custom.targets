@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask TaskName="CustomBuildTasks.LineCounter"
+			   AssemblyFile="$(MSBuildProjectDirectory)\..\..\src\CustomBuildTasks\bin\Debug\CustomBuildTasks.dll" />
+
+	<Target Name="CountLines" BeforeTargets="Build">
+		<LineCounter SourceFiles="@(Compile)">
+			<Output TaskParameter="TotalLines" PropertyName="CodeLineCount" />
+		</LineCounter>
+		<Message Text="Project has $(CodeLineCount) lines of code"
+				 Importance="high" />
+	</Target>
+</Project>
